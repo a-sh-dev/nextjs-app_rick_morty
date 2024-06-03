@@ -1,5 +1,6 @@
 'use client'
 
+import { UserContextProvider } from '@/context/userContext'
 import { theme } from '@/styles/theme'
 import { HttpLink } from '@apollo/client'
 import {
@@ -9,7 +10,7 @@ import {
 } from '@apollo/experimental-nextjs-app-support'
 import { ChakraProvider } from '@chakra-ui/react'
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+function ThemeProvider({ children }: { children: React.ReactNode }) {
   return <ChakraProvider theme={theme}>{children}</ChakraProvider>
 }
 
@@ -33,10 +34,20 @@ function makeClient() {
   })
 }
 
-export function ApolloProvider({ children }: React.PropsWithChildren) {
+function ApolloProvider({ children }: React.PropsWithChildren) {
   return (
     <ApolloNextAppProvider makeClient={makeClient}>
       {children}
     </ApolloNextAppProvider>
+  )
+}
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <ApolloProvider>
+      <ThemeProvider>
+        <UserContextProvider>{children}</UserContextProvider>
+      </ThemeProvider>
+    </ApolloProvider>
   )
 }
