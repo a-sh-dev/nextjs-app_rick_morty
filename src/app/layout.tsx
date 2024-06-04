@@ -17,9 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={fonts.rubik.variable}>
-      <body suppressHydrationWarning>
+      <body>
         <Providers>
-          <Box bg="purple.100">
+          <Box bg="gray.100">
             <Container
               maxWidth={{ base: 'container.sm', md: 'xl', lg: '4xl' }}
               minHeight="100vh"

@@ -15,7 +15,7 @@ const UserDetails = () => {
 
   return user ? (
     <HStack>
-      <Avatar name={user.username} textTransform="uppercase" />
+      <Avatar name={user.username} textTransform="uppercase" as="div" />
       <Box p={2}>
         <Text as="b" casing="capitalize">
           {user.username}
