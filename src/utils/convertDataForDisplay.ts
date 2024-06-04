@@ -37,6 +37,8 @@ export const convertDataForDisplay = (data: ModifiedRawCharactersData) => {
       id: character.id,
       name: character.name,
       image: character.image,
+      status: character.status,
+      gender: character.gender,
       species: character.species,
       type: character.type,
       origin: character.origin.name,

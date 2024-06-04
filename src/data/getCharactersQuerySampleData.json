@@ -12,6 +12,8 @@
           "id": "21",
           "name": "Aqua Morty",
           "image": "https://rickandmortyapi.com/api/character/avatar/21.jpeg",
+          "status": "unknown",
+          "gender": "Male",
           "species": "Humanoid",
           "type": "Fish-Person",
           "origin": {
@@ -22,6 +24,8 @@
           "id": "22",
           "name": "Aqua Rick",
           "image": "https://rickandmortyapi.com/api/character/avatar/22.jpeg",
+          "status": "unknown",
+          "gender": "Male",
           "species": "Humanoid",
           "type": "Fish-Person",
           "origin": {
