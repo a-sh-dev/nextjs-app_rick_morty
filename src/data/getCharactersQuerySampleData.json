@@ -1,0 +1,34 @@
+{
+  "data": {
+    "characters": {
+      "info": {
+        "pages": 42,
+        "count": 826,
+        "prev": 1,
+        "next": 3
+      },
+      "results": [
+        {
+          "id": "21",
+          "name": "Aqua Morty",
+          "image": "https://rickandmortyapi.com/api/character/avatar/21.jpeg",
+          "species": "Humanoid",
+          "type": "Fish-Person",
+          "origin": {
+            "name": "unknown"
+          }
+        },
+        {
+          "id": "22",
+          "name": "Aqua Rick",
+          "image": "https://rickandmortyapi.com/api/character/avatar/22.jpeg",
+          "species": "Humanoid",
+          "type": "Fish-Person",
+          "origin": {
+            "name": "unknown"
+          }
+        }
+      ]
+    }
+  }
+}
