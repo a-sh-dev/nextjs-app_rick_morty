@@ -1,5 +1,6 @@
-import { Center, HStack } from '@chakra-ui/react'
+import { Center, HStack, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
+import { CapsText } from './CapsText'
 import { RoundedButton } from './RoundedButton'
 
 interface PaginationProps {
@@ -7,6 +8,7 @@ interface PaginationProps {
   totalPages: number
   pageLimitPerSet: number
   charactersCountPerPage: number
+  totalCharacters: number
   onPageChange: (page: number) => void
 }
 
@@ -15,6 +17,8 @@ export const Pagination = ({
   totalPages,
   pageLimitPerSet,
   onPageChange,
+  totalCharacters,
+  charactersCountPerPage,
 }: PaginationProps) => {
   const maxDisplayedPages = Math.min(pageLimitPerSet, totalPages)
   const pageSetStart =
@@ -41,32 +45,41 @@ export const Pagination = ({
 
   return (
     <Center my={4}>
-      <HStack spacing={2}>
-        <RoundedButton isDisabled={pageSetStart === 1} onClick={handlePrevSet}>
-          {`Prev ${pageLimitPerSet}`}
-        </RoundedButton>
-        {Array.from({ length: pageSetEnd - pageSetStart + 1 }, (_, i) => {
-          const pageNum = pageSetStart + i
-          const isCurrentPage = currentPage === pageNum
-          return (
-            <Link href={`${pageNum}`} key={pageNum}>
-              <RoundedButton
-                cursor={isCurrentPage ? 'default' : ''}
-                variant={isCurrentPage ? 'solid' : 'outline'}
-                onClick={() => handlePageChange(pageNum)}
-              >
-                {pageNum}
-              </RoundedButton>
-            </Link>
-          )
-        })}
-        <RoundedButton
-          isDisabled={pageSetEnd === totalPages}
-          onClick={handleNextSet}
-        >
-          {`Next ${pageLimitPerSet}`}
-        </RoundedButton>
-      </HStack>
+      <VStack spacing={6}>
+        <HStack spacing={2}>
+          <RoundedButton
+            isDisabled={pageSetStart === 1}
+            onClick={handlePrevSet}
+          >
+            {`Prev ${pageLimitPerSet}`}
+          </RoundedButton>
+          {Array.from({ length: pageSetEnd - pageSetStart + 1 }, (_, i) => {
+            const pageNum = pageSetStart + i
+            const isCurrentPage = currentPage === pageNum
+            return (
+              <Link href={`${pageNum}`} key={pageNum}>
+                <RoundedButton
+                  cursor={isCurrentPage ? 'default' : ''}
+                  variant={isCurrentPage ? 'solid' : 'outline'}
+                  onClick={() => handlePageChange(pageNum)}
+                >
+                  {pageNum}
+                </RoundedButton>
+              </Link>
+            )
+          })}
+          <RoundedButton
+            isDisabled={pageSetEnd === totalPages}
+            onClick={handleNextSet}
+          >
+            {`Next ${pageLimitPerSet}`}
+          </RoundedButton>
+        </HStack>
+        <CapsText>
+          {charactersCountPerPage} of {totalCharacters} characters - total of{' '}
+          {totalPages} pages
+        </CapsText>
+      </VStack>
     </Center>
   )
 }

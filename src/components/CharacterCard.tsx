@@ -21,6 +21,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import Image from 'next/image'
+import { CapsText } from './CapsText'
 
 type CharacterProps = CharactersDataDisplayType['characters'][0]
 type CharacterImgProps = {
@@ -54,7 +55,6 @@ export const CharacterCard = ({
   origin,
 }: CharacterProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const keyFontSize = { base: 'medium', sm: 'xx-small' }
   const valueFontSize = { base: 'large', sm: 'medium' }
 
   return (
@@ -93,30 +93,16 @@ export const CharacterCard = ({
             <Stack direction={{ base: 'column', sm: 'row' }}>
               <CharacterImg src={image} alt={name} isModal />
               <Stack ml={{ base: '', sm: '6' }}>
-                <Text
-                  casing="uppercase"
-                  fontSize={keyFontSize}
-                  letterSpacing={2}
-                >
-                  Species/Type
-                </Text>
+                <CapsText>Species/Type</CapsText>
                 <Text fontSize={valueFontSize}>
                   {species}
                   {type && <Text as="span">{`, ${type}`}</Text>}
                 </Text>
 
-                <Text casing="uppercase" fontSize="xx-small" letterSpacing={2}>
-                  Gender
-                </Text>
+                <CapsText>Gender</CapsText>
                 <Text fontSize={valueFontSize}>{gender}</Text>
 
-                <Text
-                  casing="uppercase"
-                  fontSize={keyFontSize}
-                  letterSpacing={2}
-                >
-                  Origin
-                </Text>
+                <CapsText>Origin</CapsText>
                 <Text fontSize={valueFontSize}>{origin}</Text>
               </Stack>
             </Stack>
