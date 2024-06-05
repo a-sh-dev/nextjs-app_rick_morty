@@ -2,7 +2,7 @@
 
 
 
-This is a [Next.js](https://nextjs.org/) with `app` router project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) using the `pnpm` package with `Node v20.12.1`.
+This is a [Next.js](https://nextjs.org/) `v.14 - app` router project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) using the `pnpm` package with `Node v20.12.1`.
 
 ## Getting Started
 

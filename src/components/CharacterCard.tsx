@@ -26,28 +26,41 @@ type CharacterProps = CharactersDataDisplayType['characters'][0]
 type CharacterImgProps = {
   src: string
   alt: string
+  isModal?: boolean
 }
 
-const CharacterImg = ({ src, alt }: CharacterImgProps) => {
+const CharacterImg = ({ src, alt, isModal }: CharacterImgProps) => {
+  const boxSize = isModal
+    ? { base: '350px', lg: '200px' }
+    : { base: '140px', sm: '150px', lg: '160px' }
+
+  const sizes = isModal ? '350px' : '150px'
+
   return (
-    <Flex
-      position="relative"
-      rounded="md"
-      boxSize={{ base: '140px', sm: '150px', lg: '160px' }}
-      mb={2}
-    >
-      <Image src={src} alt={alt} sizes="150px" fill />
+    <Flex position="relative" borderRadius={6} boxSize={boxSize} mb={2}>
+      <Image src={src} alt={alt} sizes={sizes} fill />
     </Flex>
   )
 }
 
-export const CharacterCard = (character: CharacterProps) => {
+export const CharacterCard = ({
+  id,
+  name,
+  image,
+  status,
+  species,
+  type,
+  gender,
+  origin,
+}: CharacterProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const keyFontSize = { base: 'medium', sm: 'xx-small' }
+  const valueFontSize = { base: 'large', sm: 'medium' }
 
   return (
     <>
       <Card
-        key={character.id}
+        key={id}
         maxW="sm"
         rounded="md"
         shadow="lg"
@@ -56,9 +69,9 @@ export const CharacterCard = (character: CharacterProps) => {
       >
         <CardBody>
           <VStack>
-            <CharacterImg src={character.image} alt={character.name} />
+            <CharacterImg src={image} alt={name} />
             <Heading size="sm" fontWeight="semibold" textAlign="center">
-              {character.name}
+              {name}
             </Heading>
           </VStack>
         </CardBody>
@@ -73,36 +86,43 @@ export const CharacterCard = (character: CharacterProps) => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            <Heading>{character.name}</Heading>
+            <Heading>{name}</Heading>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Stack direction={{ base: 'column', sm: 'row' }}>
-              <CharacterImg src={character.image} alt={character.name} />
-              <Stack ml={6}>
-                <Text casing="uppercase" fontSize="xx-small" letterSpacing={2}>
+              <CharacterImg src={image} alt={name} isModal />
+              <Stack ml={{ base: '', sm: '6' }}>
+                <Text
+                  casing="uppercase"
+                  fontSize={keyFontSize}
+                  letterSpacing={2}
+                >
                   Species/Type
                 </Text>
-                <Text>
-                  {character.species}
-                  {character.type && (
-                    <Text as="span">{`, ${character.type}`}</Text>
-                  )}
+                <Text fontSize={valueFontSize}>
+                  {species}
+                  {type && <Text as="span">{`, ${type}`}</Text>}
                 </Text>
 
                 <Text casing="uppercase" fontSize="xx-small" letterSpacing={2}>
                   Gender
                 </Text>
-                <Text>{character.gender}</Text>
-                <Text casing="uppercase" fontSize="xx-small" letterSpacing={2}>
+                <Text fontSize={valueFontSize}>{gender}</Text>
+
+                <Text
+                  casing="uppercase"
+                  fontSize={keyFontSize}
+                  letterSpacing={2}
+                >
                   Origin
                 </Text>
-                <Text>{character.origin}</Text>
+                <Text fontSize={valueFontSize}>{origin}</Text>
               </Stack>
             </Stack>
           </ModalBody>
           <ModalFooter justifyContent="space-between">
-            <Tag>Status: {character.status}</Tag>
+            <Tag>Status: {status}</Tag>
             <Button onClick={onClose}>Close</Button>
           </ModalFooter>
         </ModalContent>

@@ -15,14 +15,12 @@ const INITIAL_VALUES: UserDetails = {
 export const UserForm = () => {
   const { user, setUser } = useUserContext()
   const [values, setValues] = React.useState<UserDetails>(INITIAL_VALUES)
-  const [isEditing, setIsEditing] = React.useState(false)
 
   const router = useRouter()
 
   React.useEffect(() => {
     if (user) {
       setValues(user)
-      setIsEditing(true)
     }
   }, [user])
 
@@ -39,6 +37,8 @@ export const UserForm = () => {
   const handleReset = () => {
     setValues(INITIAL_VALUES)
   }
+
+  const isEditing = !!user?.username
 
   return (
     <Flex
@@ -60,8 +60,8 @@ export const UserForm = () => {
           <Heading>{isEditing ? 'Edit Details' : 'Hey, there! 👋'}</Heading>
           {!isEditing && (
             <Text mb={8}>
-              In order to access the site, please fill in the form below (all
-              required).
+              In order to access the site, <br />
+              please fill in the form below (all required).
             </Text>
           )}
         </Box>

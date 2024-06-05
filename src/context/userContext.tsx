@@ -1,19 +1,22 @@
 'use client'
 
-import { USER_SESSION_KEY } from '@/utils/config'
 import React from 'react'
 
+const USER_SESSION_KEY = 'rickMontyUser'
 export interface UserDetails {
   username: string
   jobTitle: string
 }
 
-interface UserContextType {
+interface UserSessionContextType {
   user: UserDetails | undefined
   setUser: (user: UserDetails) => void
+  logout: () => void
 }
 
-const UserContext = React.createContext<UserContextType | undefined>(undefined)
+const UserSessionContext = React.createContext<
+  UserSessionContextType | undefined
+>(undefined)
 
 export const UserContextProvider = ({
   children,
@@ -21,7 +24,9 @@ export const UserContextProvider = ({
   children: React.ReactNode
 }) => {
   const [user, setUser] = React.useState<UserDetails | undefined>(undefined)
+  // const [hasSession, setHasSession] = React.useState(false)
 
+  // Safeguard from SSR error/warning
   const isClientSide = typeof window !== 'undefined'
 
   React.useEffect(() => {
@@ -30,6 +35,7 @@ export const UserContextProvider = ({
 
       if (storedUser) {
         setUser(JSON.parse(storedUser))
+        // setHasSession(true)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,20 +48,28 @@ export const UserContextProvider = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
+  const logout = () => {
+    setUser(undefined)
+    if (isClientSide) {
+      window.sessionStorage.removeItem(USER_SESSION_KEY)
+    }
+  }
+
   return (
-    <UserContext.Provider
+    <UserSessionContext.Provider
       value={{
         user,
         setUser,
+        logout,
       }}
     >
       {children}
-    </UserContext.Provider>
+    </UserSessionContext.Provider>
   )
 }
 
 export const useUserContext = () => {
-  const userContext = React.useContext(UserContext)
+  const userContext = React.useContext(UserSessionContext)
   if (!userContext) {
     throw new Error('useUserContext must be used within a UserContextProvider')
   }

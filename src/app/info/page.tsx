@@ -1,4 +1,5 @@
 import { PageTitle } from '@/components/PageTitle'
+import { ProtectedPage } from '@/components/ProtectedPage'
 import { PageRoute } from '@/utils/config'
 import { Box, Button, Center, HStack, Text, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
@@ -6,6 +7,7 @@ import Link from 'next/link'
 export default function Info() {
   return (
     <VStack spacing={10} mt={10} as="main">
+      <ProtectedPage />
       <Box maxW="80%" textAlign="center">
         <PageTitle>Information</PageTitle>
         <Text fontSize="2xl" mb={2}>

@@ -25,4 +25,13 @@ export const PageRoute = {
 } as const
 export type PageRoute = EnumAlternativeType<typeof PageRoute>
 
+export const UserDetailsKeys = {
+  Username: 'username',
+  JobTitle: 'jobTitle',
+} as const
+export type UserDetailsKeys = EnumAlternativeType<typeof UserDetailsKeys>
+
 export const USER_SESSION_KEY = 'rickMontyUser'
+export const PREFIX = 'rickMontyUser-'
+export const USERNAME = `${PREFIX}${UserDetailsKeys.Username}`
+export const JOB_TITLE = `${PREFIX}${UserDetailsKeys.JobTitle}`

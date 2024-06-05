@@ -37,7 +37,7 @@ export const Header = () => {
       <HStack divider={<StackDivider borderColor="gray.400" />} spacing={4}>
         <Logo />
         <Link href={PageRoute.Info}>
-          <RoundedButton isDisabled={!user}>Info</RoundedButton>
+          <RoundedButton isDisabled={!user?.username}>Info</RoundedButton>
         </Link>
       </HStack>
       <Spacer />

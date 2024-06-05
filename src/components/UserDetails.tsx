@@ -1,19 +1,16 @@
-'use client'
-
 import { useUserContext } from '@/context/userContext'
 import { PageRoute } from '@/utils/config'
 import { Avatar, Box, Button, HStack, Text } from '@chakra-ui/react'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export const UserDetails = () => {
-  const { user } = useUserContext()
-  const router = useRouter()
+  const { user, logout } = useUserContext()
 
-  const handleEdit = () => {
-    router.replace(PageRoute.Home)
+  const handleLogout = () => {
+    logout()
   }
 
-  return user ? (
+  return user?.username ? (
     <HStack>
       <Avatar name={user.username} textTransform="uppercase" as="div" />
       <Box p={2}>
@@ -24,9 +21,21 @@ export const UserDetails = () => {
           {user.jobTitle}
         </Text>
       </Box>
-      <Button size="xs" variant="outline" onClick={handleEdit}>
-        Edit
-      </Button>
+      <HStack>
+        <Link href={PageRoute.Home}>
+          <Button size="xs" variant="outline">
+            Edit
+          </Button>
+        </Link>
+        <Button
+          size="xs"
+          variant="outline"
+          onClick={handleLogout}
+          colorScheme="red"
+        >
+          Exit
+        </Button>
+      </HStack>
     </HStack>
   ) : (
     <></>
