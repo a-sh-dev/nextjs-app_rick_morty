@@ -49,9 +49,10 @@ pnpm test
 - I implemented a workaround for not using a code generator tool to automatically create explicit TypeScript types due to time constraints in setting it up.
 - As a tradeoff, I created a sample JSON file of the query result to infer the type and modified it accordingly.
 
-### **Pagination**
+### **Pagination** & Form
 
-- The pagination is simple and could be improved for users to limit the number of characters per page. 
+- The pagination is simple and could be improved for users to limit the number of characters per page.
+- The `username` field can be validated by adding regex/pattern to only accept username-type values (such as no spaces, symbols, etc.), with an error helper message added if there is any error. For simplicity, I've only used the standard native validation.  
 
 ### **Testing**
 
