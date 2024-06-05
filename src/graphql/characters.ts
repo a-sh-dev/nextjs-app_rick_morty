@@ -13,6 +13,8 @@ export const GET_CHARACTERS_QUERY = gql`
         id
         name
         image
+        status
+        gender
         species
         type
         origin {

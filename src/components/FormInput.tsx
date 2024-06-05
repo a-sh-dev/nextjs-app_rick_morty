@@ -8,7 +8,7 @@ interface FormInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const FormInput = ({
+export const FormInput = ({
   name,
   value,
   label,
@@ -30,5 +30,3 @@ const FormInput = ({
     </FormControl>
   )
 }
-
-export default FormInput

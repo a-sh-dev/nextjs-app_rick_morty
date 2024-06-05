@@ -1,33 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 👾 Rick & Morty
+
+
+
+This is a [Next.js](https://nextjs.org/) with `app` router project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) using the `pnpm` package with `Node v20.12.1`.
 
 ## Getting Started
 
-First, run the development server:
+After cloning the repository locally, please install the `pnpm` package on your machine. The [easiest way to install](https://pnpm.io/installation#using-homebrew) it is using `brew`.
+
+To run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run tests:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+pnpm test
+```
 
-## Learn More
+## Preview
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Assumptions
+
+
+
+## Design Decisions
+
+
+
+
+
+## Tradeoffs
+
+This is a workaround for not using a code generator tool to automatically type due to time constraints for setting it up.
+
+
+
+## Resources
+
+
+
+---
+
+<sub>This is a [Next.js](https://nextjs.org/) with `app` router project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) using the `pnpm` package built with `Node v20.12.1`.</sub>
+
+---
+
+<sub>**Crafted with care ❤ (within a very limited time) by a-sh. in 2024**</sub>.
+
+
 
 ## Deploy on Vercel
 

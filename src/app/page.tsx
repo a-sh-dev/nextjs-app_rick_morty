@@ -1,4 +1,4 @@
-import UserForm from '@/components/UserForm'
+import { UserForm } from '@/components/UserForm'
 import { AbsoluteCenter } from '@chakra-ui/react'
 
 export default function Home() {

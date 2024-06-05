@@ -1,5 +1,5 @@
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
 import { Providers } from '@/lib/providers'
 import { fonts } from '@/styles/fonts'
 import { Box, Container } from '@chakra-ui/react'
@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en" className={fonts.rubik.variable}>
       <body>
         <Providers>
-          <Box bg="gray.100">
+          <Box bg="gray.300">
             <Container
               maxWidth={{ base: 'container.sm', md: 'xl', lg: '4xl' }}
               minHeight="100vh"

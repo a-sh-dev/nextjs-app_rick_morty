@@ -5,14 +5,14 @@ import { PageRoute } from '@/utils/config'
 import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
-import FormInput from './FormInput'
+import { FormInput } from './FormInput'
 
 const INITIAL_VALUES: UserDetails = {
   username: '',
   jobTitle: '',
 }
 
-const UserForm = () => {
+export const UserForm = () => {
   const { user, setUser } = useUserContext()
   const [values, setValues] = React.useState<UserDetails>(INITIAL_VALUES)
   const [isEditing, setIsEditing] = React.useState(false)
@@ -100,5 +100,3 @@ const UserForm = () => {
     </Flex>
   )
 }
-
-export default UserForm

@@ -2,9 +2,10 @@
 
 import { useUserContext } from '@/context/userContext'
 import { PageRoute } from '@/utils/config'
-import { Button, HStack, Spacer, StackDivider, Text } from '@chakra-ui/react'
+import { HStack, Spacer, StackDivider, Text } from '@chakra-ui/react'
 import Link from 'next/link'
-import UserDetails from './UserDetails'
+import { RoundedButton } from './RoundedButton'
+import { UserDetails } from './UserDetails'
 
 const Logo = () => {
   return (
@@ -28,17 +29,15 @@ const Logo = () => {
   )
 }
 
-const Header = () => {
+export const Header = () => {
   const { user } = useUserContext()
 
   return (
     <HStack as="header" p="4">
-      <HStack divider={<StackDivider borderColor="purple.300" />} spacing={4}>
+      <HStack divider={<StackDivider borderColor="gray.400" />} spacing={4}>
         <Logo />
         <Link href={PageRoute.Info}>
-          <Button size="sm" borderRadius={50} isDisabled={!user}>
-            Info
-          </Button>
+          <RoundedButton isDisabled={!user}>Info</RoundedButton>
         </Link>
       </HStack>
       <Spacer />
@@ -46,5 +45,3 @@ const Header = () => {
     </HStack>
   )
 }
-
-export default Header

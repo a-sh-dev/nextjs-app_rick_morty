@@ -4,6 +4,6 @@ import Info from './page'
 
 test('Info page', () => {
   render(<Info />)
-  expect(screen.getByText('Information')).toBeDefined()
+  expect(screen.getByText('Information')).toBeVisible()
   // expect(screen.getByRole('heading', { level: 1, name: 'Home' })).toBeDefined()
 })
