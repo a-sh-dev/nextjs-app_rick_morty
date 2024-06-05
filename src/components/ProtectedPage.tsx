@@ -13,7 +13,7 @@ export const ProtectedPage = () => {
 
   // As a workaround for not using 'middleware' to redirect
   // user who doesn't have access
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (!hasUserSession) {
       router.replace(PageRoute.Home)
     }

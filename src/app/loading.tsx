@@ -1,9 +1,5 @@
-import { AbsoluteCenter, Spinner } from '@chakra-ui/react'
+import { LoadingSpinner } from '@/components/Spinner'
 
 export default function Loading() {
-  return (
-    <AbsoluteCenter axis="both">
-      <Spinner size="xl" />
-    </AbsoluteCenter>
-  )
+  return <LoadingSpinner />
 }

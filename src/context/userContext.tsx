@@ -24,7 +24,6 @@ export const UserContextProvider = ({
   children: React.ReactNode
 }) => {
   const [user, setUser] = React.useState<UserDetails | undefined>(undefined)
-  // const [hasSession, setHasSession] = React.useState(false)
 
   // Safeguard from SSR error/warning
   const isClientSide = typeof window !== 'undefined'
@@ -35,7 +34,6 @@ export const UserContextProvider = ({
 
       if (storedUser) {
         setUser(JSON.parse(storedUser))
-        // setHasSession(true)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

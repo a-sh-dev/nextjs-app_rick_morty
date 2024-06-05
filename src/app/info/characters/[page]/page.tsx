@@ -34,24 +34,27 @@ export default function Characters({ params }: { params: { page: string } }) {
     totalPages: info.totalPages,
     charactersCountPerPage: info.charactersCountPerPage,
     onPageChange: handlePageChange,
+    totalCharacters: info.totalCharacters,
   }
 
   return (
-    <VStack spacing={10} mt={10} as="main">
+    <>
       <ProtectedPage />
-      <Box maxW="80%" textAlign="center">
-        <PageTitle>Characters</PageTitle>
-        <Text mb={2} fontSize="small">
-          Click to view detailed character information.
-        </Text>
-      </Box>
-      <Pagination {...pageInfo} />
-      <SimpleGrid columns={{ base: 2, sm: 3, lg: 4 }} spacing={5}>
-        {characters.map((character) => (
-          <CharacterCard key={character.id} {...character} />
-        ))}
-      </SimpleGrid>
-      <Pagination {...pageInfo} />
-    </VStack>
+      <VStack spacing={10} mt={10} as="main">
+        <Box maxW="80%" textAlign="center">
+          <PageTitle>Characters</PageTitle>
+          <Text mb={2} fontSize="small">
+            Click to view detailed character information.
+          </Text>
+        </Box>
+        <Pagination {...pageInfo} />
+        <SimpleGrid columns={{ base: 2, sm: 3, lg: 4 }} spacing={5}>
+          {characters.map((character) => (
+            <CharacterCard key={character.id} {...character} />
+          ))}
+        </SimpleGrid>
+        <Pagination {...pageInfo} />
+      </VStack>
+    </>
   )
 }
