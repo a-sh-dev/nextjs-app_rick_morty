@@ -4,7 +4,6 @@ import { USERNAME } from './utils/config'
 
 export default function middleware(request: NextRequest) {
   const hasUserSession = cookies().has(USERNAME)
-  console.log({ USERNAME, hasUserSession })
   if (!hasUserSession) {
     return NextResponse.redirect(new URL('/', request.url))
   }
