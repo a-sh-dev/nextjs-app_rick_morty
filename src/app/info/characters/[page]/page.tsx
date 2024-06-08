@@ -3,7 +3,6 @@
 import { CharacterCard } from '@/components/CharacterCard'
 import { PageTitle } from '@/components/PageTitle'
 import { Pagination } from '@/components/Pagination'
-import { ProtectedPage } from '@/components/ProtectedPage'
 import { GET_CHARACTERS_QUERY } from '@/graphql/characters'
 import {
   convertDataForDisplay,
@@ -39,7 +38,6 @@ export default function Characters({ params }: { params: { page: string } }) {
 
   return (
     <>
-      <ProtectedPage />
       <VStack spacing={10} mt={10} as="main">
         <Box maxW="80%" textAlign="center">
           <PageTitle>Characters</PageTitle>

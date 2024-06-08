@@ -1,7 +1,6 @@
 'use client'
 
 import { UserDetails, useUserContext } from '@/context/userContext'
-import { PageRoute } from '@/utils/config'
 import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -31,7 +30,6 @@ export const UserForm = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
     setUser(values)
-    router.replace(PageRoute.Info)
   }
 
   const handleReset = () => {
@@ -50,7 +48,7 @@ export const UserForm = () => {
     >
       <Box
         p={8}
-        minWidth="400px"
+        minWidth="350px"
         maxWidth="500px"
         borderRadius={8}
         boxShadow="lg"
