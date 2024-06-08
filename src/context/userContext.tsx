@@ -1,5 +1,8 @@
 'use client'
 
+import { PageRoute, USERNAME } from '@/utils/config'
+import { deleteCookie, setCookie } from 'cookies-next'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const USER_SESSION_KEY = 'rickMontyUser'
@@ -25,6 +28,8 @@ export const UserContextProvider = ({
 }) => {
   const [user, setUser] = React.useState<UserDetails | undefined>(undefined)
 
+  const router = useRouter()
+
   // Safeguard from SSR error/warning
   const isClientSide = typeof window !== 'undefined'
 
@@ -42,6 +47,9 @@ export const UserContextProvider = ({
   React.useEffect(() => {
     if (isClientSide && user) {
       window.sessionStorage.setItem(USER_SESSION_KEY, JSON.stringify(user))
+      // For middleware
+      setCookie(USERNAME, user.username)
+      router.replace(PageRoute.Info)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
@@ -50,6 +58,9 @@ export const UserContextProvider = ({
     setUser(undefined)
     if (isClientSide) {
       window.sessionStorage.removeItem(USER_SESSION_KEY)
+      // Remove cookies
+      deleteCookie(USERNAME)
+      router.replace(PageRoute.Home)
     }
   }
 
