@@ -32,7 +32,7 @@ pnpm test
 - I encountered a few issues, which I will explain further in the following "Tradeoffs" section.
 - Due to time constraints, I did not focus on the styling, although it is responsive and presentable by focusing on the user experience. I treat the project as a "beta" of a Rick & Morty information website.
 - I added basic es-lint, prettier, and VSCode settings to maintain code consistency so any developer can maintain the same settings.
-- I utilised an EnumAlternativeType utility type that works like enums as an alternative to `enums`. [Why TypeScript enums suck](https://blog.logrocket.com/why-typescript-enums-suck/).
+- I utilised an `EnumAlternativeType` utility type that works like enums as an alternative to `enums`. [Why TypeScript enums suck](https://blog.logrocket.com/why-typescript-enums-suck/).
 
 
 
@@ -41,8 +41,11 @@ pnpm test
 ### **Authentication**
 
 - In the real-world scenario, I will not use `sessionStorage` to store user details. I have tried using the Next.js built-in `cookies`. However, I was stuck trying to set or save values into the browser's cookies on the client side. With more time, the right implementation is to use the Next.js server action to create a `POST` server action. As a tradeoff, I utilised the `useContext` hook and the `sessionStorage`.
-- For real authentication, I will use a third-party library and integrate the `cookies`, as it can be used for setting up middleware to protect routes/pages if a user is not authenticated.
-- Please note, as a workaround for using the middleware, I've created an empty component (`<ProtectedPage/ >`) to trigger auto-redirection if the user accesses protected pages. This is far from perfect; you will see the protected page is still rendered, and there is a delay in the redirection. Previously, the trial of using the middleware and cookies worked well. However, I turned it back to using `sessionStorage` because the `cookies` couldn't be created, as I needed to add a server-side action. From articles, people use third-party libraries such as `next-auth` to help with better authentication.
+- For real authentication, I will use a third-party library (`next-auth` and utilise real backend database) and perhaps integrate the `cookies`, as they can be used to set up middleware to protect routes/pages if a user is not authenticated.
+- ~~Please note, as a workaround for using the middleware, I've created an empty component (`<ProtectedPage/ >`) to trigger auto-redirection if the user accesses protected pages. This is far from perfect; you will see the protected page is still rendered, and there is a delay in the redirection. Previously, the trial of using the middleware and cookies worked well. However, I turned it back to using `sessionStorage` because the `cookies` couldn't be created, as I needed to add a server-side action. From articles, people use third-party libraries such as `next-auth` to help with better authentication.~~
+- **<u>Update:</u>** I integrated `cookies-next` in the `userContext` hook to add a cookie when the user fills in the form to use this cookie in the `middleware`.
+  - Middleware is now set up, and if the user doesn't fill in the form, all other pages are protected and inaccessible, and auto direction to Home is triggered.
+
 
 ### **Apollo GraphQL**
 
@@ -51,8 +54,8 @@ pnpm test
 
 ### **Pagination** & Form
 
-- The pagination is simple and could be improved for users to limit the number of characters per page.
-- The `username` field can be validated by adding regex/pattern to only accept username-type values (such as no spaces, symbols, etc.), with an error helper message added if there is any error. For simplicity, I've only used the standard native validation.  
+- The pagination is simple and could be improved so that users can limit the number of characters per page.
+- The `username` field can be validated by adding a regex/pattern to only accept username-type values (such as no spaces, symbols, etc.), with an error helper message added if there is any error. For simplicity, I've only used the standard native validation.  
 
 ### **Testing**
 
@@ -62,9 +65,11 @@ pnpm test
 ### **Styling**
 
 - I kept the styling minimal and utilised `Chakra UI` without much customisation except for setting the component's colour scheme and font. 
-
 - I would clean up the files better, especially separating the types into their own file.
-- What was meant to be a 2-hour project ended up taking much more time. However, this experience has taught me so much about the power of perseverance and determination (although I'm quite frustrated that I couldn't get things worked as intended!). Through this project, I have delved deep into the intricacies of the Next.js app router, and it has ignited a desire within me to explore its full-stack capabilities further.
+
+### Reflection
+
+What was meant to be a 2-hour project ended up taking much more time. However, this experience has taught me so much about the power of perseverance and determination (although I'm quite frustrated that I couldn't get things worked as intended!). Through this project, I have delved deep into the intricacies of the Next.js app router, and it has ignited a desire within me to explore its full-stack capabilities further.
 
 ---
 
