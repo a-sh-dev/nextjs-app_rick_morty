@@ -21,7 +21,9 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import Image from 'next/image'
+import { Suspense } from 'react'
 import { CapsText } from './CapsText'
+import { LoadingSpinner } from './LoadingSpinner'
 
 type CharacterProps = CharactersDataDisplayType['characters'][0]
 type CharacterImgProps = {
@@ -38,9 +40,11 @@ const CharacterImg = ({ src, alt, isModal }: CharacterImgProps) => {
   const sizes = isModal ? '350px' : '150px'
 
   return (
-    <Flex position="relative" borderRadius={6} boxSize={boxSize} mb={2}>
-      <Image src={src} alt={alt} sizes={sizes} fill />
-    </Flex>
+    <Suspense fallback={<LoadingSpinner />}>
+      <Flex position="relative" borderRadius={6} boxSize={boxSize} mb={2}>
+        <Image src={src} alt={alt} sizes={sizes} fill />
+      </Flex>
+    </Suspense>
   )
 }
 
