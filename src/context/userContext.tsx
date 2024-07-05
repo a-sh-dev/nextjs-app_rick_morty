@@ -45,7 +45,9 @@ export const UserContextProvider = ({
       setCookie(USERNAME, user.username)
       router.replace(PageRoute.Info)
     }
-  }, [user, router])
+    // disables router dependency warning
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user])
 
   const logout = () => {
     setUser(undefined)
