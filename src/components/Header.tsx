@@ -33,7 +33,7 @@ export const Header = () => {
   const { user } = useUserContext()
 
   return (
-    <HStack as="header" p="4">
+    <HStack as="header" pt={2}>
       <HStack divider={<StackDivider borderColor="gray.400" />} spacing={4}>
         <Logo />
         <Link href={PageRoute.Info}>
