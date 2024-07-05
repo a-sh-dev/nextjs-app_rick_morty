@@ -30,38 +30,29 @@ export const UserContextProvider = ({
 
   const router = useRouter()
 
-  // Safeguard from SSR error/warning
-  const isClientSide = typeof window !== 'undefined'
-
   React.useEffect(() => {
-    if (isClientSide) {
-      const storedUser = window.sessionStorage.getItem(USER_SESSION_KEY)
+    const storedUser = window.sessionStorage.getItem(USER_SESSION_KEY)
 
-      if (storedUser) {
-        setUser(JSON.parse(storedUser))
-      }
+    if (storedUser) {
+      setUser(JSON.parse(storedUser))
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   React.useEffect(() => {
-    if (isClientSide && user) {
+    if (user) {
       window.sessionStorage.setItem(USER_SESSION_KEY, JSON.stringify(user))
       // For middleware
       setCookie(USERNAME, user.username)
       router.replace(PageRoute.Info)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user])
+  }, [user, router])
 
   const logout = () => {
     setUser(undefined)
-    if (isClientSide) {
-      window.sessionStorage.removeItem(USER_SESSION_KEY)
-      // Remove cookies
-      deleteCookie(USERNAME)
-      router.replace(PageRoute.Home)
-    }
+    window.sessionStorage.removeItem(USER_SESSION_KEY)
+    // Remove cookies
+    deleteCookie(USERNAME)
+    router.replace(PageRoute.Home)
   }
 
   return (
