@@ -2,7 +2,6 @@
 
 import { UserDetails, useUserContext } from '@/context/userContext'
 import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
-import { useRouter } from 'next/navigation'
 import React from 'react'
 import { FormInput } from './FormInput'
 
@@ -14,8 +13,6 @@ const INITIAL_VALUES: UserDetails = {
 export const UserForm = () => {
   const { user, setUser } = useUserContext()
   const [values, setValues] = React.useState<UserDetails>(INITIAL_VALUES)
-
-  const router = useRouter()
 
   React.useEffect(() => {
     if (user) {
